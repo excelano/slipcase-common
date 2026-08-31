@@ -2,6 +2,9 @@ slipcase-common (1.0.0) stable; urgency=low
 
   * First release. The media type and its icon, taken out of the products that
     used to carry them so that one package owns them.
+  * Breaks and Replaces slipcase-desktop before 0.1.3, which is where the icon
+    moved out of. Without them dpkg refuses this package on any machine already
+    carrying one of those versions.
   * The icon is declared twice in the media type, as the icon and as the
     generic icon. Without the second declaration a container draws as a blank
     generic document: GTK searches theme-major, and Adwaita answers
