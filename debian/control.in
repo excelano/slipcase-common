@@ -1,0 +1,20 @@
+Package: slipcase-common
+Version: @VERSION@
+Architecture: all
+Maintainer: David M. Anderson <david.anderson@excelano.com>
+Installed-Size: @SIZE@
+Section: utils
+Priority: optional
+Homepage: https://github.com/excelano/slipcase-common
+Depends: shared-mime-info, hicolor-icon-theme
+Description: Media type and icon for slipcase containers
+ Declares application/x.slipcase+zip against *.slpc for shared-mime-info, and
+ ships the icon a container is drawn with. No executable.
+ .
+ Every slipcase product on a Linux machine depends on this package rather than
+ carrying a copy, because a media type has to be declared once and an icon named
+ for a media type is one file at one path. Two packages shipping that path is not
+ a merge, it is dpkg refusing the second install.
+ .
+ The two tool packages own the dpkg triggers that rebuild the mime and icon
+ caches, which is why this package carries no maintainer scripts.

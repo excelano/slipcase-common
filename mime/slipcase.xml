@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  The slipcase media type, for shared-mime-info.
+
+  SPEC 4 names `application/x.slipcase+zip` and the extension `.slpc`, and
+  reserves no magic bytes: a container is identified by opening it and finding a
+  conformant metadata member, which is not a question this database can ask. The
+  glob is therefore the only identification available.
+
+  This file is the one declaration of the type on a Linux machine. Every
+  slipcase product depends on the package carrying it rather than shipping a
+  copy, because two packages cannot ship the same path — dpkg refuses the second
+  install outright — and the icon a media type is drawn with is one file at one
+  path.
+-->
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/x.slipcase+zip">
+    <comment>Slipcase container</comment>
+    <!--
+    True and useful. A container is a ZIP, so an archive tool can open one and a
+    desktop that knows nothing of slipcases still has something to offer. It
+    does not cost the glob: where a name matches `*.slpc` and the content sniffs
+    as `application/zip`, shared-mime-info takes the glob, because the
+    magic-matched type is the parent rather than the child.
+
+    It carries no icon with it, which is measured and worth stating, because it
+    is the reading everybody has first: `content_type_is_a` answers true and the
+    icon name list is unaffected. Without the two elements below a container
+    draws as a blank generic document rather than as an archive.
+    -->
+    <sub-class-of type="application/zip"/>
+    <glob pattern="*.slpc"/>
+    <icon name="application-x.slipcase+zip"/>
+    <!--
+    Naming this icon again, rather than leaving the default, and the reason is a
+    property of how GTK searches. GIO hands the file manager the whole name list
+    at once and GTK4 searches theme-major: every name is tried in Adwaita before
+    any name is tried in hicolor. The default generic icon for `application/*`
+    is `application-x-generic`, which Adwaita has and hicolor's slipcase icon
+    cannot outrank, so the generic won every lookup and containers drew as blank
+    pages. Naming the specific icon here leaves Adwaita nothing to answer, so
+    hicolor is reached and the drawing appears. Measured both ways, in
+    `slipcase-desktop` first and again here.
+    -->
+    <generic-icon name="application-x.slipcase+zip"/>
+  </mime-type>
+</mime-info>

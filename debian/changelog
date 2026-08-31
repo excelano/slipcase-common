@@ -1,0 +1,10 @@
+slipcase-common (1.0.0) stable; urgency=low
+
+  * First release. The media type and its icon, taken out of the products that
+    used to carry them so that one package owns them.
+  * The icon is declared twice in the media type, as the icon and as the
+    generic icon. Without the second declaration a container draws as a blank
+    generic document: GTK searches theme-major, and Adwaita answers
+    application-x-generic before hicolor is reached.
+
+ -- David M. Anderson <david.anderson@excelano.com>  Sun, 31 Aug 2026 11:00:00 +0000
