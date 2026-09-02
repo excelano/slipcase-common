@@ -1,7 +1,8 @@
 # slipcase-common
 
 The slipcase media type and the icon a container is drawn with, as one package
-that every slipcase product on a Linux machine depends on. No executable.
+that every slipcase product on a Linux machine depends on. No executable. The
+format is specified at <https://slipcaseformat.org>.
 
 ## Why it exists
 
@@ -21,8 +22,10 @@ expressed once, and depended on.
 ## What is in it
 
 `mime/slipcase.xml` declares `application/x.slipcase+zip` against `*.slpc`, as a
-subclass of `application/zip`. SPEC §4 names the type and the extension and
-reserves no magic bytes, so the glob is the only identification available.
+subclass of `application/zip`.
+[SPEC §4](https://slipcaseformat.org/spec/#4-file-extension-and-media-type) names
+the type and the extension and reserves no magic bytes, so the glob is the only
+identification available.
 
 `icons/application-x.slipcase+zip.svg` is the drawing: a card sliding into an
 open-topped case, on a 64-unit grid. It came from `slipcase-desktop`, which
