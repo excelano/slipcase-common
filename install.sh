@@ -1,5 +1,5 @@
 #!/bin/sh
-# Install the slipcase media type and its icon into a prefix, which defaults to
+# Install the Slipcase media type and its icon into a prefix, which defaults to
 # ~/.local.
 #
 # For a person installing by hand and for testing an association without
@@ -38,7 +38,7 @@ install -m 0644 "${here}/icons/application-x.slipcase+zip.svg" \
 [ -x "$(command -v gtk-update-icon-cache || true)" ] &&
     gtk-update-icon-cache -q -t -f "${prefix}/share/icons/hicolor" || true
 
-echo "installed the slipcase media type and icon under ${prefix}"
+echo "installed the Slipcase media type and icon under ${prefix}"
 echo
 echo "check it with:"
 echo "  xdg-mime query filetype SOME.slpc     # application/x.slipcase+zip"

@@ -1,7 +1,7 @@
 #!/bin/sh
 # Undo install.sh.
 #
-# Removing this takes the file type away from every slipcase product on the
+# Removing this takes the file type away from every Slipcase product on the
 # machine at once, which is the other side of one package owning it.
 #
 # Author: David M. Anderson
@@ -26,4 +26,4 @@ rm -f "${prefix}/share/mime/packages/slipcase.xml" \
 [ -x "$(command -v gtk-update-icon-cache || true)" ] &&
     gtk-update-icon-cache -q -t -f "${prefix}/share/icons/hicolor" || true
 
-echo "removed the slipcase media type and icon from ${prefix}"
+echo "removed the Slipcase media type and icon from ${prefix}"

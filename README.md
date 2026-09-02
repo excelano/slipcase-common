@@ -1,7 +1,7 @@
 # slipcase-common
 
-The slipcase media type and the icon a container is drawn with, as one package
-that every slipcase product on a Linux machine depends on. No executable. The
+The Slipcase media type and the icon a container is drawn with, as one package
+that every Slipcase product on a Linux machine depends on. No executable. The
 format is specified at <https://slipcaseformat.org>.
 
 ## Why it exists

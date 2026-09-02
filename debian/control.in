@@ -5,15 +5,15 @@ Maintainer: David M. Anderson <david.anderson@excelano.com>
 Installed-Size: @SIZE@
 Section: utils
 Priority: optional
-Homepage: https://github.com/excelano/slipcase-common
+Homepage: https://slipcaseformat.org
 Depends: shared-mime-info, hicolor-icon-theme
 Breaks: slipcase-desktop (<< 0.1.3)
 Replaces: slipcase-desktop (<< 0.1.3)
-Description: Media type and icon for slipcase containers
+Description: Media type and icon for Slipcase containers
  Declares application/x.slipcase+zip against *.slpc for shared-mime-info, and
  ships the icon a container is drawn with. No executable.
  .
- Every slipcase product on a Linux machine depends on this package rather than
+ Every Slipcase product on a Linux machine depends on this package rather than
  carrying a copy, because a media type has to be declared once and an icon named
  for a media type is one file at one path. Two packages shipping that path is not
  a merge, it is dpkg refusing the second install.
