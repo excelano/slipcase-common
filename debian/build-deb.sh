@@ -43,6 +43,18 @@ install -D -m 0644 "${root}/README.md" \
 install -D -m 0644 "${root}/LICENSE" \
     "${stage}/usr/share/doc/slipcase-common/copyright"
 
+# Policy 12.7 wants the changelog under `usr/share/doc`, compressed, and
+# lintian reports its absence as an error rather than a warning. `changelog.gz`
+# and not `changelog.Debian.gz` because this is a native package: the version in
+# `debian/changelog` carries no Debian revision, so there is no upstream
+# changelog for a Debian one to sit beside.
+#
+# `-9n` rather than plain `gzip`: the highest compression because lintian asks
+# for it, and no stored name or timestamp so that building the same source twice
+# gives the same bytes.
+gzip -9nc "${here}/changelog" > "${stage}/usr/share/doc/slipcase-common/changelog.gz"
+chmod 0644 "${stage}/usr/share/doc/slipcase-common/changelog.gz"
+
 size=$(du -ks "$stage" | cut -f1)
 mkdir -p "${stage}/DEBIAN"
 sed -e "s/@VERSION@/${version}/" -e "s/@SIZE@/${size}/" \

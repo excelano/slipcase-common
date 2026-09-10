@@ -15,6 +15,9 @@ slipcase-common (1.1.0) stable; urgency=low
     entries. sub-class-of carries the default application but not the
     recommended list, which is matched on the exact type, so a family left out
     of a MimeType= line still opens but drops out of the top of Open With.
+  * The package now carries this changelog under usr/share/doc, compressed,
+    which policy 12.7 requires and lintian reported the absence of as an error
+    in 1.0.0 as well.
 
  -- David M. Anderson <david.anderson@excelano.com>  Wed, 09 Sep 2026 23:37:00 +0000
 
