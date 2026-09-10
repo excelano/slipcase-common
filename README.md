@@ -32,7 +32,55 @@ open-topped case, on a 64-unit grid. It came from `slipcase-desktop`, which
 keeps a copy under its own name as its *application* icon — a different role,
 and one that may diverge from this one.
 
-## Two things measured rather than assumed
+The same file also declares five payload families, and `icons/` carries a
+drawing for each. See below.
+
+## The payload families
+
+A container named `report.pdf.slpc` draws with a PDF mark on the card rather
+than with the plain one, because `mime/slipcase.xml` declares
+`application/x.slipcase-pdf+zip` against `*.pdf.slpc` and gives it its own icon.
+There are five: PDF, document, image, audio and video, each a subclass of
+`application/x.slipcase+zip` and each covering a list of payload extensions.
+Anything not on a list keeps the plain icon and needs no declaration, so the
+families are an addition to the type rather than a replacement for it.
+
+Five and not fifty, because an icon has to survive the 16 pixels a file manager
+uses in a list. Text and word processor payloads share one mark for the same
+reason: two drawings made of horizontal rules differ by nothing a person can see
+at that size. Spreadsheets and presentations are the obvious next two if the
+mark for each can be told apart from a document's.
+
+**The icon is a guess, and the guess comes from the container's name.** That
+`foo.pdf.slpc` holds `foo.pdf` is [Appendix B][b], which is non-normative, and
+[§3][3] requires a reader to find the payload by `payload.file` alone and never
+by that convention. An icon is not a reader and a hint is not a verdict, but the
+hint can be wrong: a container named `invoice.pdf.slpc` around a PNG payload
+draws a PDF mark. Whatever opens it says what is actually inside, which is the
+answer anybody acts on. A thumbnailer would read the metadata and know, and
+would also be an executable run against untrusted archives on whatever happens
+to be in the directory somebody is browsing, which [§6][6] names as a hazard in
+those words. That is the trade this package declines for now.
+
+[b]: https://slipcaseformat.org/spec/#appendix-b-naming-convention-non-normative
+[3]: https://slipcaseformat.org/spec/#3-implementation-requirements
+[6]: https://slipcaseformat.org/spec/#6-security-considerations
+
+**Adding a family means editing two other repositories.** A family type is
+opened by whatever opens a container, because `sub-class-of` carries the default
+application. What it does not carry is the *recommended* list, which is
+exact-type only, so a family missing from a product's `MimeType=` line still
+opens but drops out of the top of Open With. `slipcase-desktop` and
+`slipcase-open` therefore name all six types in their desktop entries, and both
+carry a comment saying why. It is the one part of this that could not stay here.
+
+**These types stay in the unregistered `x.` tree, permanently.** The type being
+registered with IANA is the format; these name a drawing. Minting siblings of a
+registered type to choose an icon would be a misuse of the name space, so when
+`application/vnd.excelano.slipcase+zip` is answered, one type moves and these
+five do not.
+
+## Things measured rather than assumed
 
 **`sub-class-of application/zip` carries no icon.** It makes
 `content_type_is_a` answer true, which is useful and is all it does. A container
@@ -49,6 +97,28 @@ measured again here from the other direction, by watching
 `package-x-generic` beat a name that was first in the list and present in the
 theme.
 
+**The longer glob wins**, which is what the payload families rest on.
+`report.pdf.slpc` matches both `*.slpc` and `*.pdf.slpc`, and shared-mime-info
+takes the pattern with more literal characters. Measured in a
+scratch `XDG_DATA_HOME` against real containers, along with two things that came
+free: `report.PDF.slpc` matches as well, since a glob is case-insensitive unless
+it says otherwise, and `deck.xyz.slpc` falls through to the plain type with no
+declaration needed.
+
+**`sub-class-of` carries the default application and not the recommended list.**
+`gio mime application/x.slipcase-pdf+zip` answers with the parent's default
+application, so a double-click opens the same product it always did; the
+recommended list comes back empty, because that one is matched on the exact
+type. The consequence is a line in each product's desktop entry rather than a
+change here.
+
+**A family with no drawing degrades to the case, not to a blank page.** Each
+family names the plain container icon as its `generic-icon` rather than its own,
+which puts a real fallback on the end of the name list GIO hands the file
+manager and keeps `application-x-generic` off it entirely. The list for a PDF
+container reads `application-x.slipcase-pdf+zip, application-x.slipcase+zip`,
+and Adwaita can answer neither.
+
 ## Installing
 
 From the Excelano apt repository, or by hand:
@@ -59,7 +129,8 @@ From the Excelano apt repository, or by hand:
 
 Check it took:
 
-    xdg-mime query filetype some.slpc   # application/x.slipcase+zip
+    xdg-mime query filetype some.slpc       # application/x.slipcase+zip
+    xdg-mime query filetype some.pdf.slpc   # application/x.slipcase-pdf+zip
 
 An empty file answers `application/x-zerosize` whatever the glob says, so check
 against a real container.

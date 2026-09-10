@@ -34,8 +34,10 @@ chmod 0755 "$stage"
 
 install -D -m 0644 "${root}/mime/slipcase.xml" \
     "${stage}/usr/share/mime/packages/slipcase.xml"
-install -D -m 0644 "${root}/icons/application-x.slipcase+zip.svg" \
-    "${stage}/usr/share/icons/hicolor/scalable/mimetypes/application-x.slipcase+zip.svg"
+for icon in "${root}"/icons/*.svg; do
+    install -D -m 0644 "$icon" \
+        "${stage}/usr/share/icons/hicolor/scalable/mimetypes/$(basename "$icon")"
+done
 install -D -m 0644 "${root}/README.md" \
     "${stage}/usr/share/doc/slipcase-common/README.md"
 install -D -m 0644 "${root}/LICENSE" \
@@ -51,7 +53,8 @@ deb="${outdir}/slipcase-common_${version}_all.deb"
 dpkg-deb --build --root-owner-group "$stage" "$deb" >/dev/null
 echo "$deb"
 
-# Read every time rather than trusted. The whole package is these two paths, and
-# a package that installs neither of them is a package that does nothing.
+# Read every time rather than trusted. The whole package is the media type and
+# the drawings it names, and a package that installs neither is one that does
+# nothing.
 echo
 dpkg-deb -c "$deb"

@@ -44,4 +44,118 @@
     -->
     <generic-icon name="application-x.slipcase+zip"/>
   </mime-type>
+
+  <!--
+    The payload families, below. Each is a type of its own so that it can carry
+    an icon of its own, because an icon belongs to a media type and there is no
+    way to draw one file of a type differently from another.
+
+    **Each is a guess, and the guess is from the container's name.** Appendix B
+    of SPEC is where `foo.pdf.slpc` holds `foo.pdf` comes from, it is
+    non-normative, and SPEC 3 requires a reader to find the payload by
+    `payload.file` alone and never by that convention. Nothing here is a reader,
+    and an icon is a hint rather than a verdict, but the hint can be wrong:
+    a container named `invoice.pdf.slpc` around a PNG payload draws as a PDF.
+    The products opening it say what is actually inside, which is the answer a
+    person acts on. A thumbnailer would read the metadata and know, and would
+    also be an executable run against untrusted archives on whatever is in the
+    directory, which SPEC 6 names as a hazard in those words.
+
+    **The longer glob wins**, which is what makes this work at all:
+    `report.pdf.slpc` matches both `*.slpc` and `*.pdf.slpc` and
+    shared-mime-info takes the one with more literal characters. Measured, along
+    with the rest of this: `report.PDF.slpc` matches too, since a glob is
+    case-insensitive unless it says otherwise, and `deck.xyz.slpc` falls through
+    to the plain type with no declaration needed.
+
+    **`sub-class-of` carries the association**, so a family type is opened by
+    whatever opens a container: `gio mime application/x.slipcase-pdf+zip`
+    answers with the same default application as the parent. What it does not
+    carry is the *recommended* list, which is exact-type only. That is why
+    `slipcase-desktop.desktop` and `slipcase-open.desktop` name these types in
+    their `MimeType=` lines, and why adding a family here means adding it there.
+
+    **`generic-icon` names the plain container icon** rather than the family's
+    own, so a family declared before its drawing exists degrades to the case
+    instead of to a blank page. It also keeps `application-x-generic` out of the
+    name list entirely, which is what the note above is about.
+
+    **These stay in the unregistered `x.` tree, permanently.** The type being
+    registered with IANA is the format; these name a drawing, and minting
+    siblings of a registered type to choose an icon would be a misuse of the
+    name space. When `application/vnd.excelano.slipcase+zip` is answered, one
+    type here moves and these five do not.
+  -->
+
+  <mime-type type="application/x.slipcase-pdf+zip">
+    <comment>Slipcase container (PDF)</comment>
+    <sub-class-of type="application/x.slipcase+zip"/>
+    <glob pattern="*.pdf.slpc"/>
+    <icon name="application-x.slipcase-pdf+zip"/>
+    <generic-icon name="application-x.slipcase+zip"/>
+  </mime-type>
+
+  <mime-type type="application/x.slipcase-document+zip">
+    <comment>Slipcase container (document)</comment>
+    <sub-class-of type="application/x.slipcase+zip"/>
+    <glob pattern="*.doc.slpc"/>
+    <glob pattern="*.docx.slpc"/>
+    <glob pattern="*.odt.slpc"/>
+    <glob pattern="*.rtf.slpc"/>
+    <glob pattern="*.txt.slpc"/>
+    <glob pattern="*.md.slpc"/>
+    <glob pattern="*.csv.slpc"/>
+    <glob pattern="*.toml.slpc"/>
+    <glob pattern="*.json.slpc"/>
+    <glob pattern="*.xml.slpc"/>
+    <glob pattern="*.yaml.slpc"/>
+    <glob pattern="*.yml.slpc"/>
+    <icon name="application-x.slipcase-document+zip"/>
+    <generic-icon name="application-x.slipcase+zip"/>
+  </mime-type>
+
+  <mime-type type="application/x.slipcase-image+zip">
+    <comment>Slipcase container (image)</comment>
+    <sub-class-of type="application/x.slipcase+zip"/>
+    <glob pattern="*.png.slpc"/>
+    <glob pattern="*.jpg.slpc"/>
+    <glob pattern="*.jpeg.slpc"/>
+    <glob pattern="*.gif.slpc"/>
+    <glob pattern="*.svg.slpc"/>
+    <glob pattern="*.webp.slpc"/>
+    <glob pattern="*.tif.slpc"/>
+    <glob pattern="*.tiff.slpc"/>
+    <glob pattern="*.bmp.slpc"/>
+    <glob pattern="*.heic.slpc"/>
+    <glob pattern="*.avif.slpc"/>
+    <icon name="application-x.slipcase-image+zip"/>
+    <generic-icon name="application-x.slipcase+zip"/>
+  </mime-type>
+
+  <mime-type type="application/x.slipcase-audio+zip">
+    <comment>Slipcase container (audio)</comment>
+    <sub-class-of type="application/x.slipcase+zip"/>
+    <glob pattern="*.mp3.slpc"/>
+    <glob pattern="*.flac.slpc"/>
+    <glob pattern="*.wav.slpc"/>
+    <glob pattern="*.ogg.slpc"/>
+    <glob pattern="*.opus.slpc"/>
+    <glob pattern="*.m4a.slpc"/>
+    <glob pattern="*.aac.slpc"/>
+    <icon name="application-x.slipcase-audio+zip"/>
+    <generic-icon name="application-x.slipcase+zip"/>
+  </mime-type>
+
+  <mime-type type="application/x.slipcase-video+zip">
+    <comment>Slipcase container (video)</comment>
+    <sub-class-of type="application/x.slipcase+zip"/>
+    <glob pattern="*.mp4.slpc"/>
+    <glob pattern="*.mkv.slpc"/>
+    <glob pattern="*.webm.slpc"/>
+    <glob pattern="*.mov.slpc"/>
+    <glob pattern="*.avi.slpc"/>
+    <glob pattern="*.m4v.slpc"/>
+    <icon name="application-x.slipcase-video+zip"/>
+    <generic-icon name="application-x.slipcase+zip"/>
+  </mime-type>
 </mime-info>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!--
+    A Slipcase container holding audio.
+
+    Author: David M. Anderson
+    Built with AI assistance (Claude, Anthropic)
+
+    The comment is inside the element for the reason
+    `application-x.slipcase+zip.svg` records.
+
+    Four bars of uneven height, which is a waveform reduced until it still has
+    somewhere to go at 16 pixels. A musical note was drawn first and lost: its
+    head and stem merge into one blob at that size, where uneven verticals stay
+    uneven.
+  -->
+  <g stroke="#2f3337" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+    <!-- The card, protruding well above the case's mouth. -->
+    <rect x="20" y="4" width="25" height="36" rx="2" fill="#f2ece1"/>
+    <!-- The payload mark. -->
+    <g stroke="#7a3f9d" stroke-width="3" fill="none">
+      <line x1="25" y1="17" x2="25" y2="23"/>
+      <line x1="30" y1="12" x2="30" y2="28"/>
+      <line x1="35" y1="15" x2="35" y2="25"/>
+      <line x1="40" y1="18" x2="40" y2="22"/>
+    </g>
+    <!-- The case: open along the top, closed on the other three sides. -->
+    <path d="M8 31 h48 v22 a4 4 0 0 1 -4 4 h-40 a4 4 0 0 1 -4 -4 z" fill="#4a6fa5"/>
+    <!-- The mouth, a darker band so the top edge reads as an opening. -->
+    <path d="M8 31 h48 v7 h-48 z" fill="#38557f" stroke="none"/>
+    <path d="M8 38 h48" fill="none"/>
+  </g>
+</svg>

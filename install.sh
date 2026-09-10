@@ -27,8 +27,13 @@ mkdir -p "${prefix}/share/mime/packages" \
 
 install -m 0644 "${here}/mime/slipcase.xml" \
     "${prefix}/share/mime/packages/slipcase.xml"
-install -m 0644 "${here}/icons/application-x.slipcase+zip.svg" \
-    "${prefix}/share/icons/hicolor/scalable/mimetypes/application-x.slipcase+zip.svg"
+# Every drawing in `icons/` rather than a list of them, so that a payload
+# family added to `mime/slipcase.xml` brings its icon along without this script
+# being told about it.
+for icon in "${here}"/icons/*.svg; do
+    install -m 0644 "$icon" \
+        "${prefix}/share/icons/hicolor/scalable/mimetypes/$(basename "$icon")"
+done
 
 # Each is absent on a minimal system and each failure is survivable: the files
 # are in place either way, and the next login or the next package installation
@@ -38,7 +43,7 @@ install -m 0644 "${here}/icons/application-x.slipcase+zip.svg" \
 [ -x "$(command -v gtk-update-icon-cache || true)" ] &&
     gtk-update-icon-cache -q -t -f "${prefix}/share/icons/hicolor" || true
 
-echo "installed the Slipcase media type and icon under ${prefix}"
+echo "installed the Slipcase media type and its icons under ${prefix}"
 echo
 echo "check it with:"
 echo "  xdg-mime query filetype SOME.slpc     # application/x.slipcase+zip"

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!--
+    A Slipcase container holding a PDF.
+
+    Author: David M. Anderson
+    Built with AI assistance (Claude, Anthropic)
+
+    The comment is inside the element rather than above it, and every drawing in
+    this directory keeps it there. `application-x.slipcase+zip.svg` records the
+    gdk-pixbuf sniff window that makes it necessary; the same 256 bytes apply
+    here.
+
+    The case, the card and the band are the base drawing unchanged, so that a
+    container reads as a container first and as a PDF second. Only the card's
+    two rules are replaced, which is the one place on the drawing a payload mark
+    can go: the card is the only part of it the case does not cover.
+
+    A colour band and not the letters PDF. The card's visible face is about 20
+    units across, three letters would be six units each, and at the 16 pixels a
+    file manager uses in a list that is four pixels a letter. Crimson is what
+    survives the reduction, and crimson is what a person reads as PDF anyway.
+  -->
+  <g stroke="#2f3337" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+    <!-- The card, protruding well above the case's mouth. -->
+    <rect x="20" y="4" width="25" height="36" rx="2" fill="#f2ece1"/>
+    <!-- The payload mark. -->
+    <rect x="23" y="12" width="19" height="11" rx="1.5" fill="#b3282d" stroke="none"/>
+    <!-- The case: open along the top, closed on the other three sides. -->
+    <path d="M8 31 h48 v22 a4 4 0 0 1 -4 4 h-40 a4 4 0 0 1 -4 -4 z" fill="#4a6fa5"/>
+    <!-- The mouth, a darker band so the top edge reads as an opening. -->
+    <path d="M8 31 h48 v7 h-48 z" fill="#38557f" stroke="none"/>
+    <path d="M8 38 h48" fill="none"/>
+  </g>
+</svg>

@@ -1,3 +1,23 @@
+slipcase-common (1.1.0) stable; urgency=low
+
+  * Five payload families, so that a container named for its payload draws with
+    a mark for it: PDF, document, image, audio and video, each a subclass of
+    application/x.slipcase+zip with its own glob list and its own drawing. A
+    payload on no list keeps the plain icon and needs no declaration.
+  * The icon is a guess from the container's name. SPEC Appendix B is
+    non-normative and SPEC 3 forbids a reader to use it, so a wrongly named
+    container draws the wrong mark. The products opening it say what is really
+    inside. README argues why this is the trade to make rather than shipping a
+    thumbnailer, which SPEC 6 describes as a hazard.
+  * Each family names the plain icon as its generic-icon, so a family declared
+    before its drawing exists degrades to the case rather than to a blank page.
+  * slipcase-desktop and slipcase-open name all six types in their desktop
+    entries. sub-class-of carries the default application but not the
+    recommended list, which is matched on the exact type, so a family left out
+    of a MimeType= line still opens but drops out of the top of Open With.
+
+ -- David M. Anderson <david.anderson@excelano.com>  Wed, 09 Sep 2026 23:37:00 +0000
+
 slipcase-common (1.0.0) stable; urgency=low
 
   * First release. The media type and its icon, taken out of the products that

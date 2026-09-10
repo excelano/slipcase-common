@@ -18,12 +18,16 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-rm -f "${prefix}/share/mime/packages/slipcase.xml" \
-      "${prefix}/share/icons/hicolor/scalable/mimetypes/application-x.slipcase+zip.svg"
+rm -f "${prefix}/share/mime/packages/slipcase.xml"
+
+# A pattern rather than the contents of this checkout's `icons/`, because the
+# checkout doing the removing is not necessarily the one that did the
+# installing. Every name this package has ever written begins the same way.
+rm -f "${prefix}"/share/icons/hicolor/scalable/mimetypes/application-x.slipcase*.svg
 
 [ -x "$(command -v update-mime-database || true)" ] &&
     update-mime-database "${prefix}/share/mime" || true
 [ -x "$(command -v gtk-update-icon-cache || true)" ] &&
     gtk-update-icon-cache -q -t -f "${prefix}/share/icons/hicolor" || true
 
-echo "removed the Slipcase media type and icon from ${prefix}"
+echo "removed the Slipcase media type and its icons from ${prefix}"
