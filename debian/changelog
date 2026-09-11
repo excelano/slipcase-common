@@ -1,3 +1,19 @@
+slipcase-common (1.1.1) stable; urgency=low
+
+  * The PDF container draws the letters PDF rather than a crimson field. The
+    letters identify the payload from 32 pixels up; below that they close up and
+    the mark is a colour against the plain container's grey, which is the
+    identification every other family offers at that size. They are paths and
+    not a text element, so no font has to be present for the drawing to render.
+  * uninstall.sh clears the media type under both names a prefix can hold. A
+    declaration left in a prefix XDG searches earlier shadows the one in a later
+    prefix whole rather than per glob, so a stale *.slpc in ~/.local is taken
+    and the payload family globs in /usr are never reached: every container
+    draws with the plain icon on a machine where the package is correctly
+    installed.
+
+ -- David M. Anderson <david.anderson@excelano.com>  Thu, 10 Sep 2026 21:40:00 +0000
+
 slipcase-common (1.1.0) stable; urgency=low
 
   * Five payload families, so that a container named for its payload draws with
