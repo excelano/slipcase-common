@@ -105,6 +105,21 @@ free: `report.PDF.slpc` matches as well, since a glob is case-insensitive unless
 it says otherwise, and `deck.xyz.slpc` falls through to the plain type with no
 declaration needed.
 
+**That arbitration is inside one database, and across data directories an
+earlier one wins whole.** `XDG_DATA_HOME` is read before `XDG_DATA_DIRS`, and
+the winner is not recomputed over the pair: a `*.slpc` declared in `~/.local` is
+taken and the `*.pdf.slpc` in `/usr` is never reached, so every container draws
+with the plain icon on a machine carrying this package correctly installed.
+Content sniffing is the one override. Where the earlier candidate is unrelated
+to `application/zip`, a real container sniffs as a ZIP and the later
+zip-descended type wins on lineage instead; a declaration carrying
+`sub-class-of application/zip` does not lose that way. Measured with two
+prefixes against real containers, and pinned down by a text file named
+`.pdf.slpc`, which sniffs as neither and flips the result. `uninstall.sh`
+therefore clears both names this package can have been installed under, and a
+hand install left in `~/.local` is the first thing to look for when a container
+draws plain on a machine that has the package.
+
 **`sub-class-of` carries the default application and not the recommended list.**
 `gio mime application/x.slipcase-pdf+zip` answers with the parent's default
 application, so a double-click opens the same product it always did; the
