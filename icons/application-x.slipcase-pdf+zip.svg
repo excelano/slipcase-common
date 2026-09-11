@@ -11,21 +11,39 @@
     gdk-pixbuf sniff window that makes it necessary; the same 256 bytes apply
     here.
 
-    The case, the card and the band are the base drawing unchanged, so that a
+    The case, the card and the mouth are the base drawing unchanged, so that a
     container reads as a container first and as a PDF second. Only the card's
     two rules are replaced, which is the one place on the drawing a payload mark
     can go: the card is the only part of it the case does not cover.
 
-    A colour band and not the letters PDF. The card's visible face is about 20
-    units across, three letters would be six units each, and at the 16 pixels a
-    file manager uses in a list that is four pixels a letter. Crimson is what
-    survives the reduction, and crimson is what a person reads as PDF anyway.
+    The letters carry the payload from 32 pixels up. The card's visible face is
+    about 20 units across, which is five units a letter once the gaps are taken
+    out, and crimson on the card's cream is the most contrast available to spend
+    on shapes that small. Below 32 the letterforms close up and the mark is a
+    warm smudge rather than a word, which is the same identification every other
+    family offers at that size: none of these drawings resolves as form at the
+    16 pixels a file manager uses in a list, and each is a colour against the
+    plain container's grey.
+
+    The crimson is spent on the letterforms and not on a field behind them. A
+    filled block would read at 16 pixels where the letters cannot, but it would
+    also be the only solid mass in the set, and a folder of mixed containers
+    wants six marks of one weight more than it wants one mark that shouts.
+
+    The letters are paths and not a `<text>` element. A text element renders
+    against whatever font the machine has, and a substituted face changes the
+    metrics and breaks the fit across the card; these are three stroked paths
+    and need nothing installed.
   -->
   <g stroke="#2f3337" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
     <!-- The card, protruding well above the case's mouth. -->
     <rect x="20" y="4" width="25" height="36" rx="2" fill="#f2ece1"/>
     <!-- The payload mark. -->
-    <rect x="23" y="12" width="19" height="11" rx="1.5" fill="#b3282d" stroke="none"/>
+    <g fill="none" stroke="#b3282d" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter">
+      <path d="M24.5 24 V14 H27 a2.6 2.6 0 0 1 0 5.2 H24.5"/>
+      <path d="M31 24 V14 h2 c3.6 0 3.6 10 0 10 h-2"/>
+      <path d="M37.5 24 V14 H41.6 M37.5 19 H40.6"/>
+    </g>
     <!-- The case: open along the top, closed on the other three sides. -->
     <path d="M8 31 h48 v22 a4 4 0 0 1 -4 4 h-40 a4 4 0 0 1 -4 -4 z" fill="#4a6fa5"/>
     <!-- The mouth, a darker band so the top edge reads as an opening. -->
