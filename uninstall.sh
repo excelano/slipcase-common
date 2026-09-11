@@ -18,7 +18,14 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-rm -f "${prefix}/share/mime/packages/slipcase.xml"
+# Two names, because a prefix can hold either. The declaration installs as
+# `slipcase.xml`, and hand installs on some machines hold it as
+# `application-x.slipcase+zip.xml`. Leaving one behind is not inert: a prefix
+# XDG searches earlier shadows a later one, and the shadowing is whole rather
+# than per-glob, so a stale `*.slpc` in ~/.local is taken and the payload family
+# globs in /usr are never reached. Every container draws with the plain icon.
+rm -f "${prefix}/share/mime/packages/slipcase.xml" \
+      "${prefix}/share/mime/packages/application-x.slipcase+zip.xml"
 
 # A pattern rather than the contents of this checkout's `icons/`, because the
 # checkout doing the removing is not necessarily the one that did the
