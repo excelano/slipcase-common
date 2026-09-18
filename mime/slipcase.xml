@@ -2,10 +2,10 @@
 <!--
   The Slipcase media type, for shared-mime-info.
 
-  SPEC 4 names `application/x.slipcase+zip` and the extension `.slpc`, and
-  reserves no magic bytes: a container is identified by opening it and finding a
-  conformant metadata member, which is not a question this database can ask. The
-  glob is therefore the only identification available.
+  SPEC 4 names `application/vnd.excelano.slipcase+zip` and the extension
+  `.slpc`, and reserves no magic bytes: a container is identified by opening it
+  and finding a conformant metadata member, which is not a question this
+  database can ask. The glob is therefore the only identification available.
 
   This file is the one declaration of the type on a Linux machine. Every
   Slipcase product depends on the package carrying it rather than shipping a
@@ -14,7 +14,7 @@
   path.
 -->
 <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
-  <mime-type type="application/x.slipcase+zip">
+  <mime-type type="application/vnd.excelano.slipcase+zip">
     <comment>Slipcase container</comment>
     <!--
     True and useful. A container is a ZIP, so an archive tool can open one and a
@@ -30,7 +30,7 @@
     -->
     <sub-class-of type="application/zip"/>
     <glob pattern="*.slpc"/>
-    <icon name="application-x.slipcase+zip"/>
+    <icon name="application-vnd.excelano.slipcase+zip"/>
     <!--
     Naming this icon again, rather than leaving the default, and the reason is a
     property of how GTK searches. GIO hands the file manager the whole name list
@@ -42,7 +42,21 @@
     hicolor is reached and the drawing appears. Measured both ways, in
     `slipcase-desktop` first and again here.
     -->
-    <generic-icon name="application-x.slipcase+zip"/>
+    <generic-icon name="application-vnd.excelano.slipcase+zip"/>
+    <!--
+    The name this type carried before IANA registered the one above on
+    2026-09-16, kept because installations and desktop entries predating the
+    registration name it. Measured in a scratch prefix: `update-mime-database`
+    compiles this into `mime/aliases`, a container types as the registered
+    name, and GIO unaliases when it looks for an application, so an entry
+    naming only the old string still opens one. `mimeinfo.cache` does not
+    unalias — it is keyed on the literal `MimeType=` string, and `xdg-mime
+    query default` reads it directly, so asked for the registered name it
+    answers nothing until the entry names that string as well. The five
+    families below need no alias: they were never anything but `x.` types and
+    are staying that way.
+    -->
+    <alias type="application/x.slipcase+zip"/>
   </mime-type>
 
   <!--
@@ -80,24 +94,24 @@
     instead of to a blank page. It also keeps `application-x-generic` out of the
     name list entirely, which is what the note above is about.
 
-    **These stay in the unregistered `x.` tree, permanently.** The type being
+    **These stay in the unregistered `x.` tree, permanently.** The type
     registered with IANA is the format; these name a drawing, and minting
     siblings of a registered type to choose an icon would be a misuse of the
-    name space. When `application/vnd.excelano.slipcase+zip` is answered, one
-    type here moves and these five do not.
+    name space. The registration on 2026-09-16 moved the container type above
+    and left these five where they are.
   -->
 
   <mime-type type="application/x.slipcase-pdf+zip">
     <comment>Slipcase container (PDF)</comment>
-    <sub-class-of type="application/x.slipcase+zip"/>
+    <sub-class-of type="application/vnd.excelano.slipcase+zip"/>
     <glob pattern="*.pdf.slpc"/>
     <icon name="application-x.slipcase-pdf+zip"/>
-    <generic-icon name="application-x.slipcase+zip"/>
+    <generic-icon name="application-vnd.excelano.slipcase+zip"/>
   </mime-type>
 
   <mime-type type="application/x.slipcase-document+zip">
     <comment>Slipcase container (document)</comment>
-    <sub-class-of type="application/x.slipcase+zip"/>
+    <sub-class-of type="application/vnd.excelano.slipcase+zip"/>
     <glob pattern="*.doc.slpc"/>
     <glob pattern="*.docx.slpc"/>
     <glob pattern="*.odt.slpc"/>
@@ -111,12 +125,12 @@
     <glob pattern="*.yaml.slpc"/>
     <glob pattern="*.yml.slpc"/>
     <icon name="application-x.slipcase-document+zip"/>
-    <generic-icon name="application-x.slipcase+zip"/>
+    <generic-icon name="application-vnd.excelano.slipcase+zip"/>
   </mime-type>
 
   <mime-type type="application/x.slipcase-image+zip">
     <comment>Slipcase container (image)</comment>
-    <sub-class-of type="application/x.slipcase+zip"/>
+    <sub-class-of type="application/vnd.excelano.slipcase+zip"/>
     <glob pattern="*.png.slpc"/>
     <glob pattern="*.jpg.slpc"/>
     <glob pattern="*.jpeg.slpc"/>
@@ -129,12 +143,12 @@
     <glob pattern="*.heic.slpc"/>
     <glob pattern="*.avif.slpc"/>
     <icon name="application-x.slipcase-image+zip"/>
-    <generic-icon name="application-x.slipcase+zip"/>
+    <generic-icon name="application-vnd.excelano.slipcase+zip"/>
   </mime-type>
 
   <mime-type type="application/x.slipcase-audio+zip">
     <comment>Slipcase container (audio)</comment>
-    <sub-class-of type="application/x.slipcase+zip"/>
+    <sub-class-of type="application/vnd.excelano.slipcase+zip"/>
     <glob pattern="*.mp3.slpc"/>
     <glob pattern="*.flac.slpc"/>
     <glob pattern="*.wav.slpc"/>
@@ -143,12 +157,12 @@
     <glob pattern="*.m4a.slpc"/>
     <glob pattern="*.aac.slpc"/>
     <icon name="application-x.slipcase-audio+zip"/>
-    <generic-icon name="application-x.slipcase+zip"/>
+    <generic-icon name="application-vnd.excelano.slipcase+zip"/>
   </mime-type>
 
   <mime-type type="application/x.slipcase-video+zip">
     <comment>Slipcase container (video)</comment>
-    <sub-class-of type="application/x.slipcase+zip"/>
+    <sub-class-of type="application/vnd.excelano.slipcase+zip"/>
     <glob pattern="*.mp4.slpc"/>
     <glob pattern="*.mkv.slpc"/>
     <glob pattern="*.webm.slpc"/>
@@ -156,6 +170,6 @@
     <glob pattern="*.avi.slpc"/>
     <glob pattern="*.m4v.slpc"/>
     <icon name="application-x.slipcase-video+zip"/>
-    <generic-icon name="application-x.slipcase+zip"/>
+    <generic-icon name="application-vnd.excelano.slipcase+zip"/>
   </mime-type>
 </mime-info>

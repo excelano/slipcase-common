@@ -46,7 +46,7 @@ done
 echo "installed the Slipcase media type and its icons under ${prefix}"
 echo
 echo "check it with:"
-echo "  xdg-mime query filetype SOME.slpc     # application/x.slipcase+zip"
+echo "  xdg-mime query filetype SOME.slpc     # application/vnd.excelano.slipcase+zip"
 echo
 echo "An empty file answers application/x-zerosize whatever the glob says, so"
 echo "check against a real container."
