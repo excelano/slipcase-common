@@ -7,7 +7,7 @@
     Built with AI assistance (Claude, Anthropic)
 
     The comment is inside the element rather than above it, and every drawing in
-    this directory keeps it there. `application-vnd.excelano.slipcase+zip.svg` records the
+    this directory keeps it there. The plain container drawing records the
     gdk-pixbuf sniff window that makes it necessary; the same 256 bytes apply
     here.
 

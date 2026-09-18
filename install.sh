@@ -27,6 +27,12 @@ mkdir -p "${prefix}/share/mime/packages" \
 
 install -m 0644 "${here}/mime/slipcase.xml" \
     "${prefix}/share/mime/packages/slipcase.xml"
+# The container drawing's superseded filename, from a prefix written to before
+# it was renamed for the registered media type. dpkg clears this on the package
+# path because the file left the package; a hand install has nobody to do it,
+# and what it leaves is a drawing named for a type nothing declares.
+rm -f "${prefix}/share/icons/hicolor/scalable/mimetypes/application-x.slipcase+zip.svg"
+
 # Every drawing in `icons/` rather than a list of them, so that a payload
 # family added to `mime/slipcase.xml` brings its icon along without this script
 # being told about it.

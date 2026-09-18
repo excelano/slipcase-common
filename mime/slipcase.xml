@@ -44,17 +44,12 @@
     -->
     <generic-icon name="application-vnd.excelano.slipcase+zip"/>
     <!--
-    The name this type carried before IANA registered the one above on
-    2026-09-16, kept because installations and desktop entries predating the
-    registration name it. Measured in a scratch prefix: `update-mime-database`
-    compiles this into `mime/aliases`, a container types as the registered
-    name, and GIO unaliases when it looks for an application, so an entry
-    naming only the old string still opens one. `mimeinfo.cache` does not
-    unalias — it is keyed on the literal `MimeType=` string, and `xdg-mime
-    query default` reads it directly, so asked for the registered name it
-    answers nothing until the entry names that string as well. The five
-    families below need no alias: they were never anything but `x.` types and
-    are staying that way.
+    The provisional name the registered one supersedes, kept so that an
+    installation or a desktop entry naming it still resolves. What the alias
+    reaches and what it does not is measured in README, under *Things measured
+    rather than assumed*: the short of it is that GIO unaliases when it looks
+    for an application and `mimeinfo.cache` does not. The five families below
+    need no alias; they are `x.` types and stay that way.
     -->
     <alias type="application/x.slipcase+zip"/>
   </mime-type>
@@ -97,8 +92,8 @@
     **These stay in the unregistered `x.` tree, permanently.** The type
     registered with IANA is the format; these name a drawing, and minting
     siblings of a registered type to choose an icon would be a misuse of the
-    name space. The registration on 2026-09-16 moved the container type above
-    and left these five where they are.
+    name space. The registration reaches the container type above and not
+    these five.
   -->
 
   <mime-type type="application/x.slipcase-pdf+zip">
