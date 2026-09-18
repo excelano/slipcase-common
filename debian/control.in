@@ -10,8 +10,9 @@ Depends: shared-mime-info, hicolor-icon-theme
 Breaks: slipcase-desktop (<< 0.1.3)
 Replaces: slipcase-desktop (<< 0.1.3)
 Description: Media type and icon for Slipcase containers
- Declares application/x.slipcase+zip against *.slpc for shared-mime-info, and
- ships the icon a container is drawn with. No executable.
+ Declares application/vnd.excelano.slipcase+zip against *.slpc for
+ shared-mime-info, with the provisional application/x.slipcase+zip as an alias,
+ and ships the icon a container is drawn with. No executable.
  .
  It also declares five payload families — PDF, document, image, audio and video
  — each matching a longer glob such as *.pdf.slpc and carrying its own drawing,

@@ -29,8 +29,11 @@ rm -f "${prefix}/share/mime/packages/slipcase.xml" \
 
 # A pattern rather than the contents of this checkout's `icons/`, because the
 # checkout doing the removing is not necessarily the one that did the
-# installing. Every name this package has ever written begins the same way.
-rm -f "${prefix}"/share/icons/hicolor/scalable/mimetypes/application-x.slipcase*.svg
+# installing. Two patterns since the container icon was renamed for the
+# registered media type: the five payload families keep the `x.` prefix, and a
+# prefix written to before the rename holds the container drawing under it too.
+rm -f "${prefix}"/share/icons/hicolor/scalable/mimetypes/application-x.slipcase*.svg \
+      "${prefix}"/share/icons/hicolor/scalable/mimetypes/application-vnd.excelano.slipcase*.svg
 
 [ -x "$(command -v update-mime-database || true)" ] &&
     update-mime-database "${prefix}/share/mime" || true

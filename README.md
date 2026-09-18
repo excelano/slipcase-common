@@ -21,16 +21,17 @@ expressed once, and depended on.
 
 ## What is in it
 
-`mime/slipcase.xml` declares `application/x.slipcase+zip` against `*.slpc`, as a
-subclass of `application/zip`.
-[SPEC §4](https://slipcaseformat.org/spec/#4-file-extension-and-media-type) names
-the type and the extension and reserves no magic bytes, so the glob is the only
-identification available.
+`mime/slipcase.xml` declares `application/vnd.excelano.slipcase+zip` against
+`*.slpc`, as a subclass of `application/zip`, and carries
+`application/x.slipcase+zip` as an alias.
+[SPEC §4](https://slipcaseformat.org/spec/#4-file-extension-and-media-type)
+names the registered type and the extension and reserves no magic bytes, so the
+glob is the only identification available.
 
-`icons/application-x.slipcase+zip.svg` is the drawing: a card sliding into an
-open-topped case, on a 64-unit grid. It came from `slipcase-desktop`, which
-keeps a copy under its own name as its *application* icon — a different role,
-and one that may diverge from this one.
+`icons/application-vnd.excelano.slipcase+zip.svg` is the drawing: a card
+sliding into an open-topped case, on a 64-unit grid. It came from
+`slipcase-desktop`, which keeps a copy under its own name as its *application*
+icon — a different role, and one that may diverge from this one.
 
 The same file also declares five payload families, and `icons/` carries a
 drawing for each. See below.
@@ -41,9 +42,10 @@ A container named `report.pdf.slpc` draws with a PDF mark on the card rather
 than with the plain one, because `mime/slipcase.xml` declares
 `application/x.slipcase-pdf+zip` against `*.pdf.slpc` and gives it its own icon.
 There are five: PDF, document, image, audio and video, each a subclass of
-`application/x.slipcase+zip` and each covering a list of payload extensions.
-Anything not on a list keeps the plain icon and needs no declaration, so the
-families are an addition to the type rather than a replacement for it.
+`application/vnd.excelano.slipcase+zip` and each covering a list of payload
+extensions. Anything not on a list keeps the plain icon and needs no
+declaration, so the families are an addition to the type rather than a
+replacement for it.
 
 Five and not fifty, because an icon has to survive the 16 pixels a file manager
 uses in a list. Text and word processor payloads share one mark for the same
@@ -74,11 +76,10 @@ opens but drops out of the top of Open With. `slipcase-desktop` and
 `slipcase-open` therefore name all six types in their desktop entries, and both
 carry a comment saying why. It is the one part of this that could not stay here.
 
-**These types stay in the unregistered `x.` tree, permanently.** The type being
+**These types stay in the unregistered `x.` tree, permanently.** The type
 registered with IANA is the format; these name a drawing. Minting siblings of a
-registered type to choose an icon would be a misuse of the name space, so when
-`application/vnd.excelano.slipcase+zip` is answered, one type moves and these
-five do not.
+registered type to choose an icon would be a misuse of the name space, so the
+registration moved the container type and left these five where they are.
 
 ## Things measured rather than assumed
 
@@ -120,6 +121,17 @@ therefore clears both names this package can have been installed under, and a
 hand install left in `~/.local` is the first thing to look for when a container
 draws plain on a machine that has the package.
 
+**The alias reaches GIO and not `mimeinfo.cache`.** `update-mime-database`
+compiles `<alias>` into `mime/aliases`, a container types as the registered
+name, and `Gio.AppInfo.get_default_for_type` on that name finds an application
+whose desktop entry names only `application/x.slipcase+zip`: an installation
+predating the registration keeps opening containers from a file manager.
+`mimeinfo.cache` is keyed on the literal `MimeType=` string and does not
+unalias, and `xdg-mime query default` reads it directly, so that command asked
+for the registered name answers nothing until the entry names it too. The
+compiled `mime/types` carries the registered name alone, which is why the guard
+in each product's `install.sh` greps for that string and not the old one.
+
 **`sub-class-of` carries the default application and not the recommended list.**
 `gio mime application/x.slipcase-pdf+zip` answers with the parent's default
 application, so a double-click opens the same product it always did; the
@@ -131,8 +143,8 @@ change here.
 family names the plain container icon as its `generic-icon` rather than its own,
 which puts a real fallback on the end of the name list GIO hands the file
 manager and keeps `application-x-generic` off it entirely. The list for a PDF
-container reads `application-x.slipcase-pdf+zip, application-x.slipcase+zip`,
-and Adwaita can answer neither.
+container reads `application-x.slipcase-pdf+zip,
+application-vnd.excelano.slipcase+zip`, and Adwaita can answer neither.
 
 ## Installing
 
@@ -144,8 +156,8 @@ From the Excelano apt repository, or by hand:
 
 Check it took:
 
-    xdg-mime query filetype some.slpc       # application/x.slipcase+zip
-    xdg-mime query filetype some.pdf.slpc   # application/x.slipcase-pdf+zip
+    xdg-mime query filetype some.slpc     # application/vnd.excelano.slipcase+zip
+    xdg-mime query filetype some.pdf.slpc # application/x.slipcase-pdf+zip
 
 An empty file answers `application/x-zerosize` whatever the glob says, so check
 against a real container.

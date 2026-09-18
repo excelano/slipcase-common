@@ -1,3 +1,23 @@
+slipcase-common (1.2.0) stable; urgency=low
+
+  * The container type is application/vnd.excelano.slipcase+zip, which IANA
+    registered on 2026-09-16, and the provisional application/x.slipcase+zip is
+    declared as an alias. SPEC 4 names the registered type. The five payload
+    families stay in the unregistered x. tree, as they were always going to:
+    they name a drawing rather than the format.
+  * The container icon is renamed application-vnd.excelano.slipcase+zip.svg,
+    since GIO derives an icon name from a media type by replacing the slash and
+    the drawing on a machine should be named for a type something declares. The
+    family drawings keep their names. uninstall.sh clears both prefixes.
+  * An installation predating the registration keeps working. The alias is
+    compiled into mime/aliases, a container types as the registered name, and
+    GIO unaliases when it looks for an application, so a desktop entry naming
+    only the old string still opens one. mimeinfo.cache does not unalias, so
+    xdg-mime query default asked for the registered name answers nothing until
+    the entry names it as well; the two products are changing to name it.
+
+ -- David M. Anderson <david.anderson@excelano.com>  Thu, 17 Sep 2026 00:00:00 +0000
+
 slipcase-common (1.1.1) stable; urgency=low
 
   * The PDF container draws the letters PDF rather than a crimson field. The
