@@ -1,3 +1,12 @@
+slipcase-common (1.1.2) stable; urgency=low
+
+  * Declare the registered media type, with the provisional name as an alias
+  * The profile is targets and names
+  * Delete the release document: ship is the procedure
+  * Record that an earlier data directory wins whole
+
+ -- David M. Anderson <david.anderson@excelano.com>  Fri, 18 Sep 2026 06:51:45 -0500
+
 slipcase-common (1.2.0) stable; urgency=low
 
   * The container type is application/vnd.excelano.slipcase+zip, which IANA
