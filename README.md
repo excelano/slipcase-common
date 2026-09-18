@@ -79,7 +79,7 @@ carry a comment saying why. It is the one part of this that could not stay here.
 **These types stay in the unregistered `x.` tree, permanently.** The type
 registered with IANA is the format; these name a drawing. Minting siblings of a
 registered type to choose an icon would be a misuse of the name space, so the
-registration moved the container type and left these five where they are.
+registration reaches the container type and not these five.
 
 ## Things measured rather than assumed
 
