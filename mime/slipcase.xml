@@ -4,7 +4,7 @@
 
   SPEC 4 names `application/vnd.excelano.slipcase+zip` and the extension
   `.slpc`, and reserves no magic bytes: a container is identified by opening it
-  and finding a conformant metadata member, which is not a question this
+  and finding a conformant flyleaf, which is not a question this
   database can ask. The glob is therefore the only identification available.
 
   This file is the one declaration of the type on a Linux machine. Every
@@ -55,18 +55,18 @@
   </mime-type>
 
   <!--
-    The payload families, below. Each is a type of its own so that it can carry
+    The content families, below. Each is a type of its own so that it can carry
     an icon of its own, because an icon belongs to a media type and there is no
     way to draw one file of a type differently from another.
 
     **Each is a guess, and the guess is from the container's name.** Appendix B
     of SPEC is where `foo.pdf.slpc` holds `foo.pdf` comes from, it is
-    non-normative, and SPEC 3 requires a reader to find the payload by
-    `payload.file` alone and never by that convention. Nothing here is a reader,
-    and an icon is a hint rather than a verdict, but the hint can be wrong:
-    a container named `invoice.pdf.slpc` around a PNG payload draws as a PDF.
-    The products opening it say what is actually inside, which is the answer a
-    person acts on. A thumbnailer would read the metadata and know, and would
+    non-normative, and SPEC 3 requires a reader to find the content file by
+    `content.file` alone and never by that convention. Nothing here is a
+    reader, and an icon is a hint rather than a verdict, but the hint can be
+    wrong: a container named `invoice.pdf.slpc` around a PNG content file draws
+    as a PDF. The products opening it say what is actually inside, which is the
+    answer a person acts on. A thumbnailer would read the flyleaf and know, and
     also be an executable run against untrusted archives on whatever is in the
     directory, which SPEC 6 names as a hazard in those words.
 

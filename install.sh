@@ -33,7 +33,7 @@ install -m 0644 "${here}/mime/slipcase.xml" \
 # and what it leaves is a drawing named for a type nothing declares.
 rm -f "${prefix}/share/icons/hicolor/scalable/mimetypes/application-x.slipcase+zip.svg"
 
-# Every drawing in `icons/` rather than a list of them, so that a payload
+# Every drawing in `icons/` rather than a list of them, so that a content
 # family added to `mime/slipcase.xml` brings its icon along without this script
 # being told about it.
 for icon in "${here}"/icons/*.svg; do

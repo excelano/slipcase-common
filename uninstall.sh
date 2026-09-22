@@ -22,7 +22,7 @@ done
 # `slipcase.xml`, and hand installs on some machines hold it as
 # `application-x.slipcase+zip.xml`. Leaving one behind is not inert: a prefix
 # XDG searches earlier shadows a later one, and the shadowing is whole rather
-# than per-glob, so a stale `*.slpc` in ~/.local is taken and the payload family
+# than per-glob, so a stale `*.slpc` in ~/.local is taken and the content family
 # globs in /usr are never reached. Every container draws with the plain icon.
 rm -f "${prefix}/share/mime/packages/slipcase.xml" \
       "${prefix}/share/mime/packages/application-x.slipcase+zip.xml"
@@ -30,7 +30,7 @@ rm -f "${prefix}/share/mime/packages/slipcase.xml" \
 # A pattern rather than the contents of this checkout's `icons/`, because the
 # checkout doing the removing is not necessarily the one that did the
 # installing. It matches on `slipcase` rather than on the prefix, so it covers
-# the container drawing and the five payload families whatever tree their types
+# the container drawing and the five content families whatever tree their types
 # sit in, and a prefix written to under an older name as well.
 rm -f "${prefix}"/share/icons/hicolor/scalable/mimetypes/application-*slipcase*.svg
 
